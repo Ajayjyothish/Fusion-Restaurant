@@ -1,7 +1,7 @@
 import React from 'react'
-import { directive } from '@babel/types';
-import { Media, Card, CardImg ,CardImgOverlay, CardText,CardBody,CardTitle } from 'reactstrap'
-import DishDetail from './DishDetailComponent'
+
+import { Card, CardImg ,CardImgOverlay, CardText,CardBody,CardTitle } from 'reactstrap'
+
 
 
    function RenderMenuItem({ dish , onClick }){
