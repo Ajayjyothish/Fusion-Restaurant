@@ -3,6 +3,7 @@ import { Navbar, NavbarBrand } from 'reactstrap'
 import './App.css';
 import Menu from "./components/MenuComponent"
 import {DISHES} from "./shared/dishes"
+import DishDetail from './components/DishDetailComponent';
 
 class App extends Component {
 
@@ -10,10 +11,17 @@ class App extends Component {
     super(props)
 
     this.state ={
-      dishes : DISHES
+      dishes : DISHES,
+      selectedDish : null,
     }
     
   }
+
+  onDishSelect(dishId) {
+    this.setState({
+        selectedDish : dishId
+    })
+}
 
   render() {
     return (
@@ -23,7 +31,8 @@ class App extends Component {
             <NavbarBrand href='/'>Ristorante Con Fusion</NavbarBrand>
           </div>
         </Navbar>
-        <Menu dishes={this.state.dishes}/>
+        <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
+        <DishDetail dish={this.state.dishes.filter(dish => dish.id === this.state.selectedDish )[0]}/>
       </div>
     );
   }

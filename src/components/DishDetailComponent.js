@@ -1,14 +1,11 @@
-import React, { Component } from 'react'
+import React  from 'react'
 import { Media, Card, CardImg ,CardImgOverlay, CardText,CardBody,CardTitle } from 'reactstrap'
 
 
-class DishDetail extends Component {
-    constructor(props) {
-        super(props)
-        
-    }
 
-    renderComments(dish){
+   
+
+    function RenderComments({dish}){
         if(dish != null){
 
             const comm = dish.comments.map(comment => {
@@ -28,27 +25,35 @@ class DishDetail extends Component {
         
     }
 
-    render(){
-        const dish = this.props.dish
+    const RenderMenu = ({dish}) => {
+        return(
+            <Card>
+                <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+            </Card>
+        )        
+    }
+
+    const DishDetail = ({dish}) => {
+        
         
 
         if (dish != null){
         return(
-            <div className="row">
-                <div className='col-12 col-md-5 m-1'>
-                    <Card>
-                        <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
-                        <CardBody>
-                            <CardTitle>{dish.name}</CardTitle>
-                            <CardText>{dish.description}</CardText>
-                        </CardBody>
-                    </Card>
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    <h4>Comments</h4>
-                    <ul className="list-unstyled">
-                        {this.renderComments(dish)}
-                    </ul>
+            <div className="container">
+                <div className="row">
+                    <div className='col-12 col-md-5 m-1'>
+                        <RenderMenu dish={dish} />
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        <h4>Comments</h4>
+                        <ul className="list-unstyled">
+                            <RenderComments dish={dish} />
+                        </ul>
+                    </div>
                 </div>
             </div>
         )
@@ -58,6 +63,7 @@ class DishDetail extends Component {
             )
         }
     }
-}
+    
+
 
 export default DishDetail
