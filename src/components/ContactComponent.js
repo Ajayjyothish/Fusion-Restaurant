@@ -9,7 +9,7 @@ class Contact extends Component {
         this.state={
             firstname:'',
             lastname:"",
-            telnumber:'',
+            telnum:"",
             email:'',
             agree:false,
             contactType:'Tel.',
@@ -81,7 +81,7 @@ class Contact extends Component {
     }
 
     render(){
-        const errors = this.validate(this.state.firstname, this.state.lastname , this.state.telnumber, this.state.email)
+        const errors = this.validate(this.state.firstname, this.state.lastname , this.state.telnum, this.state.email)
 
         return(
             <div className="container">
@@ -152,7 +152,13 @@ class Contact extends Component {
                             <FormGroup row>
                                 <Label htmlFor="telnum" md={2}>Contact Tel.</Label>
                                 <Col md={10}>
-                                    <Input onBlur={this.handleBlur('telnumber')} onChange={this.handleInputChange} valid={errors.telnumber === ''} invalid={errors.telnumber !== ''}  type="tel" id='telnum' name='telnum' placeholder='Tel Number' value={this.state.telnumber}></Input>
+                                <Input type="tel" id="telnum" name="telnum"
+                                        placeholder="Tel. Number"
+                                        value={this.state.telnum}
+                                        valid={errors.telnumber === ''}
+                                        invalid={errors.telnumber !== ''}
+                                        onBlur={this.handleBlur('telnumber')}
+                                        onChange={this.handleInputChange} />
                                     <FormFeedback>
                                         {errors.telnumber}
                                     </FormFeedback>
