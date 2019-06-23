@@ -4,6 +4,8 @@ import Main from './components/MainComponent'
 import Header from './components/HeaderComponent'
 import Footer from './components/FooterComponent'
 import { BrowserRouter} from 'react-router-dom'
+import { Provider } from "react-redux";
+import { ConfigureStore } from "./redux/configureStore";
 
 
 class App extends Component {
@@ -12,10 +14,11 @@ class App extends Component {
   
 
   render() {
-
+    const store  = ConfigureStore()
     
 
     return (
+      <Provider store={store}>
       <BrowserRouter>
         <div>
           <Header />
@@ -23,6 +26,7 @@ class App extends Component {
           <Footer />
         </div>
       </BrowserRouter>
+      </Provider>
     );
   }
 }
