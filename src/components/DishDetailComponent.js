@@ -70,7 +70,7 @@ const minLength = (len) => (val) => (val) && (val.length >= len)
 
         handleSubmit(values){
             this.toggleModal()
-            this.props.addComment(this.props.dish.id,values.rating,values.Name, values.message)
+            this.props.postComment(this.props.dish.id,values.rating,values.Name, values.message)
     
         }
         
