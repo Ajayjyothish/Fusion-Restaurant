@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Control,LocalForm,Errors } from "react-redux-form";
 import {Col,Row } from 'reactstrap';
 import { Loading } from "./loadingComponet";
+import { baseURL } from "../shared/baseURL";
 
 
    
@@ -37,7 +38,7 @@ const minLength = (len) => (val) => (val) && (val.length >= len)
     const RenderMenu = ({dish}) => {
         return(
             <Card>
-                <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
+                <CardImg width="100%" src={baseURL + dish.image} alt={dish.name}></CardImg>
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
@@ -45,6 +46,7 @@ const minLength = (len) => (val) => (val) && (val.length >= len)
             </Card>
         )        
     }
+
 
     class DishDetail extends Component {
 
