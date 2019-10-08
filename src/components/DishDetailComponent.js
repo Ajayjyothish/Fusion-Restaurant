@@ -6,22 +6,26 @@ import { Control,LocalForm,Errors } from "react-redux-form";
 import {Col,Row } from 'reactstrap';
 import { Loading } from "./loadingComponet";
 import { baseURL } from "../shared/baseURL";
-
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
    
 
     function RenderComments({comments}){
         if(comments != null){
-
-            const comm = comments.map(comment => {
             return(
+           <Stagger in>
+            {comments.map(comment => {
+            return(
+                <Fade in>
                 <div key={comment.id}>
                     <li>--{comment.comment}</li><br />
                     <li>{comment.author} , {new Intl.DateTimeFormat('en-US',{year : 'numeric' , month : "short", day : '2-digit' }).format(new Date(Date.parse(comment.date)))} <br /><br /></li>
                 </div>
+                </Fade>
             )
-        })
-        return comm
+        })}
+        </Stagger>)
+        
     }else{
         return (
             <div></div>
@@ -37,6 +41,10 @@ const minLength = (len) => (val) => (val) && (val.length >= len)
 
     const RenderMenu = ({dish}) => {
         return(
+            <FadeTransform in
+                transformProps={{
+                    exitTransform : 'scale(0.5) translateY(-50%)'
+                }}>
             <Card>
                 <CardImg width="100%" src={baseURL + dish.image} alt={dish.name}></CardImg>
                     <CardBody>
@@ -44,6 +52,7 @@ const minLength = (len) => (val) => (val) && (val.length >= len)
                         <CardText>{dish.description}</CardText>
                     </CardBody>
             </Card>
+            </FadeTransform>
         )        
     }
 
@@ -135,8 +144,8 @@ const minLength = (len) => (val) => (val) && (val.length >= len)
                                                
                            
                             <Row className='form-group'>
-                                
-                                <Col>
+                            <Label htmlFor="Rating" md={2}>Rating</Label>
+                                <Col md={10}>
                                     <Control.select model='.rating' className='form-control' name="rating"  >
                                         <option>1</option>
                                         <option>2</option>
